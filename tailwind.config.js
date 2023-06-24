@@ -7,7 +7,11 @@ module.exports = {
     "./src/containers/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Proxima Nova"],
+      },
+    },
   },
   plugins: [],
 };
