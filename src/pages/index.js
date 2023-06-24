@@ -1,11 +1,14 @@
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronDownIcon,
+  AdjustmentsHorizontalIcon,
+} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="grid gap-4 md:grid-cols-12 md:grid-rows-2 min-h-screen">
+    <div className="grid gap-4 md:grid-cols-12 md:grid-rows-[60px_minmax(300px,_1fr)] min-h-screen">
       <div className=" hidden md:block md:row-span-2 md:col-span-3">
         <div className="bg-white rounded-3xl mt-2 overflow-hidden">
           {/*  accordion header */}
@@ -34,8 +37,18 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-blue-200 hidden md:block md:col-span-9">
-        sort desktop
+      <div className=" hidden md:block md:col-span-9">
+        <div className="bg-white rounded-3xl flex px-4">
+          <div className="flex items-center gap-x-2 mr-3">
+            <AdjustmentsHorizontalIcon className="w-6 h-6" />
+            <span>sorting:</span>
+          </div>
+          <ul className="flex items-center gap-x-4">
+            <li className="py-4 text-gray-600 cursor-pointer">most visited</li>
+            <li className="py-4 text-gray-600 cursor-pointer">favorites</li>
+            <li className="py-4 text-gray-600 cursor-pointer">newest</li>
+          </ul>
+        </div>
       </div>
       <div className="bg-blue-200 md:col-span-9">blogs desktop</div>
     </div>
