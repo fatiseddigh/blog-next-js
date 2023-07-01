@@ -1,12 +1,15 @@
+import PostList from "@/components/posts/PostList";
 import {
   ChevronDownIcon,
   AdjustmentsHorizontalIcon,
 } from "@heroicons/react/24/outline";
+import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Home() {
+export default function Home({ blogData, categoryData }) {
   const [isOpen, setIsOpen] = useState(false);
+  console.log(blogData, "data");
   return (
     <div className="bg-gray-100">
       <div className="container mx-auto lg:max-w-screen-xl">
@@ -33,15 +36,17 @@ export default function Home() {
                 >
                   all article
                 </Link>
-                <Link
-                  href="#"
-                  className="block py-1 pl-3 mb-1 hover:bg-purple-100"
-                >
-                  one article
-                </Link>
-                <Link href="#" className="block py-1 pl-3  hover:bg-purple-100">
-                  two article
-                </Link>
+                {categoryData.map((category) => {
+                  return (
+                    <Link
+                      href={`/blogs/${category.englishTitle}`}
+                      className="block py-1 pl-3  hover:bg-purple-100"
+                      key={category._id}
+                    >
+                      {category.title}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -61,45 +66,23 @@ export default function Home() {
             </div>
           </div>
           <div className=" md:col-span-9 grid grid-cols-6 gap-8 ">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((index) => {
-              return (
-                <div
-                  key={index}
-                  className="col-span-6 md:col-span-3 lg-col-span-2 bg-white flex flex-col rounded-3xl p-4"
-                >
-                  <div className="aspect-w-16 aspect-h-9 ">
-                    <img
-                      src="/images/next.jpg"
-                      alt=""
-                      className=" rounded-2xl h-44 w-ful h-full object-center object-cover "
-                    />
-                  </div>
-                  <div className="bg-gray-50 rounded-2xl p-4 mt-3 flex flex-col w-full justify-between flex-1">
-                    <h2 className="mb-4 font-bold">
-                      {index !== 2
-                        ? " this title"
-                        : " this is dfgdgdgdgdg fgdgdgdgdg dfgdgdgdgdgdf dtittdsggdgdffgdgle"}
-                    </h2>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <img
-                          src="/images/next.jpg"
-                          alt=""
-                          className="w-6 h-6 rounded-full ring-2 ring-white mr-2"
-                        />
-                        <span className="text-sm ">fateme seddigh</span>
-                      </div>
-                      <span className="text-xs px-2 py-1 cursor-pointer rounded-xl bg-blue-100 text-blue-600 hover:text-blue-100 hover:bg-blue-600 transition-all duration-300">
-                        react
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            <PostList blogData={blogData} />
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  const { data: result } = await axios.get(
+    "http://localhost:5000/api/posts?page=1&limit=10"
+  );
+  const { data: dataCategory } = await axios.get(
+    "http://localhost:5000/api/post-category"
+  );
+  const { data } = result;
+  return {
+    props: { blogData: data, categoryData: dataCategory.data },
+  };
 }
