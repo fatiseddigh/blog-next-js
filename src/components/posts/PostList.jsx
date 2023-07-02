@@ -5,6 +5,7 @@ import {
   ClockIcon,
   ChatBubbleBottomCenterTextIcon,
 } from "@heroicons/react/24/outline";
+import Link from "next/link";
 const PostList = ({ blogData }) => {
   return blogData.docs.map((blog, index) => {
     return (
@@ -14,15 +15,21 @@ const PostList = ({ blogData }) => {
       >
         {/* cover iamge */}
         <div className="aspect-w-16 aspect-h-9 mb-6">
-          <img
-            src={blog.coverImage}
-            alt=""
-            className="rounded-2xl w-full h-full object-center object-cover"
-          />
+          <Link href={`/blogs/posts/${blog.hashId}/${blog.slug}`}>
+            <img
+              src={blog.coverImage}
+              alt=""
+              className="rounded-2xl w-full h-full object-center object-cover"
+            />
+          </Link>
         </div>
         {/* blog content */}
         <div className="bg-gray-50  p-2 rounded-2xl flex flex-col w-full justify-between flex-1">
-          <h2 className="mb-4 font-bold">{blog.title}</h2>
+          <Link href={`/blogs/posts/${blog.hashId}/${blog.slug}`}>
+            <h2 className="mb-4 font-bold hover:text-purple-600">
+              {blog.title}
+            </h2>
+          </Link>
           {/* blog data */}
           <div>
             {/* blog author-category */}
@@ -37,16 +44,14 @@ const PostList = ({ blogData }) => {
                   {blog.author.name}
                 </span>
               </div>
-              {/* <Link href={`/blogs/${blog.category.englishTitle}`}> */}
-              <a>
+              <Link href={`/blogs/${blog.category.englishTitle}`}>
                 <span
                   className="text-xs px-2 py-1 rounded-xl bg-blue-100 text-blue-600
                 hover:text-white hover:bg-blue-600 transition-all duration-300 cursor-pointer"
                 >
                   {blog.category.englishTitle}
                 </span>
-              </a>
-              {/* </Link> */}
+              </Link>
             </div>
             {/* blog interaction */}
             <div className="flex items-center justify-between">

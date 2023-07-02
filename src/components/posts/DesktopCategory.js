@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const DesktopCategory = ({ categoryData }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <div className="bg-white rounded-3xl mt-2 overflow-hidden">
@@ -21,7 +21,10 @@ const DesktopCategory = ({ categoryData }) => {
       </div>
       {/* accordion body */}
       <div className={` ${isOpen ? "block" : "hidden"}`}>
-        <Link href="#" className="block py-1 pl-3 mb-1 hover:bg-purple-100">
+        <Link
+          href="/blogs"
+          className="block py-1 pl-3 mb-1 hover:bg-purple-100"
+        >
           all article
         </Link>
         {categoryData.map((category) => {
