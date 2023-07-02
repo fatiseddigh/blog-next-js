@@ -15,7 +15,7 @@ const PostList = ({ blogData }) => {
       >
         {/* cover iamge */}
         <div className="aspect-w-16 aspect-h-9 mb-6">
-          <Link href={`/blogs/posts/${blog.hashId}/${blog.slug}`}>
+          <Link href={`/posts/${blog.hashId}/${blog.slug}`}>
             <img
               src={blog.coverImage}
               alt=""
@@ -25,7 +25,7 @@ const PostList = ({ blogData }) => {
         </div>
         {/* blog content */}
         <div className="bg-gray-50  p-2 rounded-2xl flex flex-col w-full justify-between flex-1">
-          <Link href={`/blogs/posts/${blog.hashId}/${blog.slug}`}>
+          <Link href={`/posts/${blog.hashId}/${blog.slug}`}>
             <h2 className="mb-4 font-bold hover:text-purple-600">
               {blog.title}
             </h2>
