@@ -12,8 +12,9 @@ export default function Home({ blogData, categoryData }) {
   console.log(blogData, "data");
   return (
     <div className="bg-gray-100">
-      <div className="container mx-auto lg:max-w-screen-xl">
+      <div className="container mx-auto lg:max-w-screen-xl px-4 md:px-0">
         <div className="grid gap-8 md:grid-cols-12 md:grid-rows-[60px_minmax(300px,_1fr)] min-h-screen">
+          {/* category desktop */}
           <div className=" hidden md:block md:row-span-2 md:col-span-3">
             <div className="bg-white rounded-3xl mt-2 overflow-hidden">
               {/*  accordion header */}
@@ -50,6 +51,22 @@ export default function Home({ blogData, categoryData }) {
               </div>
             </div>
           </div>
+          {/* category mobile */}
+          <div className="flex md:hidden gap-x-4 overflow-auto pb-4">
+            {categoryData.map((category) => {
+              return (
+                <Link
+                  href={`/blogs/${category.englishTitle}`}
+                  className="block border border-gray-500 text-gray-500 bg-white
+                  rounded-3xl px-3 py-1 whitespace-nowrap "
+                  key={category._id}
+                >
+                  {category.title}
+                </Link>
+              );
+            })}
+          </div>
+          {/* sort bar desktop */}
           <div className=" hidden md:block md:col-span-9">
             <div className="bg-white rounded-3xl flex px-4">
               <div className="flex items-center gap-x-2 mr-3">
@@ -65,6 +82,7 @@ export default function Home({ blogData, categoryData }) {
               </ul>
             </div>
           </div>
+          {/* blog post */}
           <div className=" md:col-span-9 grid grid-cols-6 gap-8 ">
             <PostList blogData={blogData} />
           </div>
