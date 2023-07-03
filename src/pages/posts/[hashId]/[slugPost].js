@@ -9,10 +9,10 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { MdContentCopy } from "react-icons/md";
 import { useState } from "react";
 import PostList from "@/components/posts/PostList";
+import PostComments from "@/components/posts/postComments";
 
 const PostPAge = ({ postData }) => {
   const [copied, setCopied] = useState(false);
-  console.log(postData.related);
   const copyHandler = () => {
     setCopied(true);
     setTimeout(() => {
@@ -231,6 +231,8 @@ const PostPAge = ({ postData }) => {
             </h3>
           )}
         </section>
+        {/* post comments */}
+        <PostComments post={postData} />
       </div>
     </div>
   );
