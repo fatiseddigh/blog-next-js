@@ -1,15 +1,15 @@
 import PostInteraction from "@/components/posts/PostInteraction";
 import { BookmarkIcon, LinkIcon } from "@heroicons/react/24/outline";
 import { BookmarkIcon as SolidBookmark } from "@heroicons/react/24/solid";
-
+import { IoLogoLinkedin, IoLogoTwitter } from "react-icons/io";
+import { FaTelegram } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
 
 const PostPAge = ({ postData }) => {
-  console.log(postData);
   return (
     <div className="bg-gray-50 min-h-screen">
-      <div className="md:max-w-screen-lg container mx-auto">
+      <div className="md:max-w-screen-md container mx-auto">
         <header className="flex flex-col md:flex-row gap-y-5 md:justify-between md:items-start mb-12 mx-auto max-w-screen-md">
           {/* author data */}
           <div className="flex items-stretch">
@@ -142,8 +142,49 @@ const PostPAge = ({ postData }) => {
               }
             )}
           </ul>
-          <div>
-            <PostInteraction post={postData} />
+          <div className="flex items-center flex-col gap-y-8 md:flex-row md:justify-between">
+            <PostInteraction
+              post={postData}
+              className="justify-evenly w-full md:w-auto"
+            />
+            {/* share btns */}
+            <div className="flex items-center gap-x-6 justify-around  w-full md:w-auto mb-8">
+              <div className="flex items-center md:gap-x-4 gap-x-6 md:w-auto">
+                <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.NEXT_PUBLIC_DOMAIM_URL}/posts/${postData.hashId}/${postData.slug}`}
+                  target="_blank"
+                  className="block"
+                  rel="noreferrer"
+                >
+                  <IoLogoLinkedin
+                    size={30}
+                    className="fill-gray-400 hover:fill-gray-500 transition-all duration-300 cursor-pointer"
+                  />
+                </a>
+                <a
+                  href={`https://twitter.com/share?text=${postData.title}&url=${process.env.NEXT_PUBLIC_DOMAIM_URL}/posts/${postData.hashId}/${postData.slug}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block"
+                >
+                  <IoLogoTwitter
+                    size={24}
+                    className="fill-gray-400  hover:fill-gray-500 transition-all duration-300 cursor-pointer"
+                  />
+                </a>
+                <a
+                  className="block"
+                  rel="noreferrer"
+                  target="_blank"
+                  href={`https://telegram.me/share/url?url=${process.env.NEXT_PUBLIC_DOMAIM_URL}/posts/${postData.hashId}/${postData.slug}&text=${postData.title}`}
+                >
+                  <FaTelegram
+                    className="fill-gray-400 hover:fill-gray-500 transition-all duration-300 cursor-pointer"
+                    size={24}
+                  />
+                </a>
+              </div>
+            </div>
           </div>
         </section>
       </div>

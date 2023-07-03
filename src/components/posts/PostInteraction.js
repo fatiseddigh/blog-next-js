@@ -9,12 +9,16 @@ import {
   HeartIcon as SolidHearIcon,
 } from "@heroicons/react/24/solid";
 
-const PostInteraction = ({ post, isSmall }) => {
+const PostInteraction = ({ post, isSmall, className }) => {
   const iconSize = isSmall ? "h-4 w-4" : "h-6 w-6";
   const numberSize = isSmall ? "text-xs" : "text-base";
 
   return (
-    <div className={`flex items-center ${isSmall ? "gap-x-2" : "gap-x-4"}`}>
+    <div
+      className={`flex items-center ${
+        isSmall ? "gap-x-2" : "gap-x-4"
+      } ${className}`}
+    >
       <button className="bg-gray-200 p-0.5 rounded flex items-center gap-x-1">
         <ChatBubbleBottomCenterTextIcon
           className={`${iconSize} stroke-gray-500`}
