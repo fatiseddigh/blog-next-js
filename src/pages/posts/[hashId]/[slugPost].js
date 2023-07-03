@@ -8,10 +8,11 @@ import Link from "next/link";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { MdContentCopy } from "react-icons/md";
 import { useState } from "react";
+import PostList from "@/components/posts/PostList";
 
 const PostPAge = ({ postData }) => {
   const [copied, setCopied] = useState(false);
-
+  console.log(postData.related);
   const copyHandler = () => {
     setCopied(true);
     setTimeout(() => {
@@ -20,7 +21,7 @@ const PostPAge = ({ postData }) => {
   };
   return (
     <div className="bg-gray-50 min-h-screen">
-      <div className="md:max-w-screen-md container mx-auto">
+      <div className="md:max-w-screen-lg container mx-auto">
         <header className="flex flex-col md:flex-row gap-y-5 md:justify-between md:items-start mb-12 mx-auto max-w-screen-md">
           {/* author data */}
           <div className="flex items-stretch">
@@ -213,6 +214,22 @@ const PostPAge = ({ postData }) => {
               </div>
             </div>
           </div>
+          <div className="border-t-2 border-gray-500 rounded w-full mb-8"></div>
+        </section>
+        {/* related posts */}
+        <section className="mb-20">
+          <h2 className="font-extrabold text-2xl md:text-3xl mb-8">
+            related posts
+          </h2>
+          {postData.related.length ? (
+            <div className="grid grid-cols-6 gap-10">
+              <PostList blogData={postData.related} />
+            </div>
+          ) : (
+            <h3 className="text-center text-red-500 font-bold">
+              post not found!!
+            </h3>
+          )}
         </section>
       </div>
     </div>

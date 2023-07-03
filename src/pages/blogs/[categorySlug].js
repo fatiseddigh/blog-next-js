@@ -20,7 +20,7 @@ export default function CategoryPage({ blogData, categoryData }) {
           </div>
           {/* blog post */}
           <div className=" md:col-span-9 grid grid-cols-6 gap-8 ">
-            <PostList blogData={blogData} />
+            <PostList blogData={blogData.docs} />
           </div>
         </div>
       </div>
