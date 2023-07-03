@@ -1,3 +1,4 @@
+import PostInteraction from "@/components/posts/PostInteraction";
 import { BookmarkIcon, LinkIcon } from "@heroicons/react/24/outline";
 import { BookmarkIcon as SolidBookmark } from "@heroicons/react/24/solid";
 
@@ -126,6 +127,25 @@ const PostPAge = ({ postData }) => {
 }
 `}</pre>
         </main>
+        <section>
+          <ul className="flex items-center flex-wrap  gap-x-4 mb-6">
+            {["React.js", "javaScript", "front end", "Next.js"].map(
+              (tag, index) => {
+                return (
+                  <li
+                    key={index}
+                    className="px-3 py-1 rounded-2xl bg-gray-200 hover:bg-gray-100 transition-all  cursor-pointer text-gray-600 tex-sm mb-3 block"
+                  >
+                    {tag}
+                  </li>
+                );
+              }
+            )}
+          </ul>
+          <div>
+            <PostInteraction post={postData} />
+          </div>
+        </section>
       </div>
     </div>
   );
