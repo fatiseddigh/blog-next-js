@@ -5,8 +5,19 @@ import { IoLogoLinkedin, IoLogoTwitter } from "react-icons/io";
 import { FaTelegram } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { MdContentCopy } from "react-icons/md";
+import { useState } from "react";
 
 const PostPAge = ({ postData }) => {
+  const [copied, setCopied] = useState(false);
+
+  const copyHandler = () => {
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 1000);
+  };
   return (
     <div className="bg-gray-50 min-h-screen">
       <div className="md:max-w-screen-md container mx-auto">
@@ -183,6 +194,22 @@ const PostPAge = ({ postData }) => {
                     size={24}
                   />
                 </a>
+              </div>
+              <div className="relative">
+                <CopyToClipboard
+                  text={`${process.env.NEXT_PUBLIC_DOMAIM_URL}/posts/${postData.hashId}/${postData.slug}`}
+                  onCopy={copyHandler}
+                >
+                  <div className="bg-gray-100 border px-3 py-1 rounded-2xl text-gray-600 flex items-center gap-x-2 cursor-pointer ">
+                    <span className="text-sm md:text-base">copy&nbsp;link</span>
+                    <MdContentCopy size={24} />
+                  </div>
+                </CopyToClipboard>
+                {copied && (
+                  <span className="absolute -top-8 left-0 bg-blue-500 px-3 py-1 rounded-2xl text-white text-sm">
+                    copied
+                  </span>
+                )}
               </div>
             </div>
           </div>
