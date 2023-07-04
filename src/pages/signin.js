@@ -4,6 +4,9 @@ import Link from "next/link";
 import Input from "@/components/FormInput";
 import Head from "next/head";
 import Layout from "@/containers/Layout";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 //  initial values
 const initialValues = {
@@ -20,9 +23,18 @@ const validationSchema = Yup.object({
 });
 
 const SignIn = () => {
+  const router = useRouter();
   //  onSubmit
   const onSubmit = (values) => {
-    console.log(values);
+    axios
+      .post("http://localhost:5000/api/user/signin", values, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        toast.success("welcome to the app");
+        router.push("/");
+      })
+      .catch((err) => toast.error(err?.response?.data?.message));
   };
 
   const formik = useFormik({
