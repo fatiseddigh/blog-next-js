@@ -5,7 +5,8 @@ import Input from "@/components/FormInput";
 import Head from "next/head";
 import Layout from "@/containers/Layout";
 import { useRouter } from "next/router";
-import { useAuthActions } from "@/context/AuthContext";
+import { useAuth, useAuthActions } from "@/context/AuthContext";
+import { useEffect } from "react";
 
 //  initial values
 const initialValues = {
@@ -24,6 +25,13 @@ const validationSchema = Yup.object({
 const SignIn = () => {
   const router = useRouter();
   const dispatch = useAuthActions();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  }, [user]);
   //  onSubmit
   const onSubmit = (values) => {
     dispatch({ type: "SIGNIN", payload: values });
