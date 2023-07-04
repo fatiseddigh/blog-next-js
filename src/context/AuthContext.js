@@ -96,7 +96,18 @@ const asyncActionHandlers = {
         });
     },
 
-  SIGNOUT: {},
+  SIGNOUT:
+    ({ dispatch }) =>
+    (action) => {
+      axios
+        .get("http://localhost:5000/api/user/logout", {
+          withCredentials: true,
+        })
+        .then(({ data }) => {
+          window.location.href = "/";
+        })
+        .catch((err) => {});
+    },
 };
 const AuthProvider = ({ children }) => {
   const [user, dispatch] = useReducerAsync(

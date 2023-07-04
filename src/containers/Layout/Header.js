@@ -1,8 +1,9 @@
-import { useAuth } from "@/context/AuthContext";
+import { useAuth, useAuthActions } from "@/context/AuthContext";
 import Link from "next/link";
 
 const Header = () => {
   const { user } = useAuth();
+  const dispatch = useAuthActions();
   return (
     <header className="bg-white shadow-md py-2 mb-5 px-5 md:px-0">
       <div className="container mx-auto xl:max-w-screen-xl">
@@ -21,9 +22,17 @@ const Header = () => {
           </ul>
           <div className="flex items-center gap-x-4">
             {user ? (
-              <Link href="/profile" className="py-2 block">
-                Profile - {user.name}
-              </Link>
+              <>
+                <button
+                  className="bg-red-500 rounded text-red-100 px-2 py-2"
+                  onClick={() => dispatch({ type: "SIGNOUT" })}
+                >
+                  logout
+                </button>
+                <Link href="/profile" className="py-2 block">
+                  Profile - <span className="text-sm">{user.name}</span>
+                </Link>
+              </>
             ) : (
               <>
                 <Link href="/signin" className="py-2 block">
