@@ -2574,6 +2574,11 @@
   dependencies:
     "punycode" "^2.1.0"
 
+"use-reducer-async@^2.1.1":
+  "integrity" "sha512-oPSFzOIEPgMenQkMHzqeRgsQLSpcyGkspAnyTWP4l1tKlt31wMVMz6wWj6g/jea/Ms7lRvBz4AL+Okt83Tntig=="
+  "resolved" "https://registry.npmjs.org/use-reducer-async/-/use-reducer-async-2.1.1.tgz"
+  "version" "2.1.1"
+
 "util-deprecate@^1.0.2":
   "integrity" "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="
   "resolved" "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
