@@ -10,6 +10,7 @@ import { MdContentCopy } from "react-icons/md";
 import { useState } from "react";
 import PostList from "@/components/posts/PostList";
 import PostComments from "@/components/posts/postComments";
+import Layout from "@/containers/Layout";
 
 const PostPAge = ({ postData }) => {
   const [copied, setCopied] = useState(false);
@@ -20,7 +21,7 @@ const PostPAge = ({ postData }) => {
     }, 1000);
   };
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <Layout>
       <div className="md:max-w-screen-lg container mx-auto">
         <header className="flex flex-col md:flex-row gap-y-5 md:justify-between md:items-start mb-12 mx-auto max-w-screen-md">
           {/* author data */}
@@ -234,7 +235,8 @@ const PostPAge = ({ postData }) => {
         {/* post comments */}
         <PostComments post={postData} />
       </div>
-    </div>
+      <div className="h-32 bg-gray-50"></div>
+    </Layout>
   );
 };
 

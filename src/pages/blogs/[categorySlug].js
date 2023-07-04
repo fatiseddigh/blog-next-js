@@ -2,11 +2,12 @@ import DesktopCategory from "@/components/posts/DesktopCategory";
 import MobileCategory from "@/components/posts/MobileCategory";
 import PostList from "@/components/posts/PostList";
 import SortBar from "@/components/posts/SortBar";
+import Layout from "@/containers/Layout";
 import axios from "axios";
 import queryString from "query-string";
 export default function CategoryPage({ blogData, categoryData }) {
   return (
-    <div className="bg-gray-100">
+    <Layout>
       <div className="container mx-auto lg:max-w-screen-xl px-4 md:px-0">
         <MobileCategory categoryData={categoryData} />
 
@@ -24,7 +25,7 @@ export default function CategoryPage({ blogData, categoryData }) {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 
