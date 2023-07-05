@@ -1,7 +1,29 @@
+import http from "@/services/httpService";
+import routerPush from "@/utils/routerPush";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
-const CommentForm = ({ postId, responseTo, setOnreply }) => {
+const CommentForm = ({ postId, responseTo, setOnReply }) => {
   const [commentValue, setCommentValue] = useState("");
+  const router = useRouter();
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const data = {
+      content: commentValue,
+      postId,
+      responseTo,
+    };
+    http
+      .post("/post-comment/save-comment", data)
+      .then(({ data }) => {
+        setCommentValue("");
+        if (setOnReply) setOnReply((open) => !open);
+        toast.success("Thanks for comment");
+        routerPush(router);
+      })
+      .catch((err) => toast.error("error"));
+  };
   return (
     <form>
       <textarea
@@ -12,7 +34,7 @@ const CommentForm = ({ postId, responseTo, setOnreply }) => {
       />
       <button
         className="mt-4 mx-auto py-3 w-full sm:w-56 bg-violet-700 rounded-2xl text-white px-3 md:text-lg"
-        // onClick={submitHandler}
+        onClick={submitHandler}
       >
         send comment
       </button>
