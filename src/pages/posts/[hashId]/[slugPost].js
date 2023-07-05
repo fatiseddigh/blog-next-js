@@ -11,6 +11,7 @@ import { useState } from "react";
 import PostList from "@/components/posts/PostList";
 import PostComments from "@/components/posts/postComments";
 import Layout from "@/containers/Layout";
+import http from "@/services/httpService";
 
 const PostPAge = ({ postData }) => {
   const [copied, setCopied] = useState(false);
@@ -245,8 +246,7 @@ export async function getServerSideProps(ctx) {
   const { query, req } = ctx;
   const {
     data: { data },
-  } = await axios.get(`http://localhost:5000/api/posts/${query.slugPost}`, {
-    withCredentials: true,
+  } = await http.get(`/posts/${query.slugPost}`, {
     headers: {
       Cookie: req.headers.cookie || "",
     },
