@@ -5,6 +5,7 @@ import SortBar from "@/components/posts/SortBar";
 import Layout from "@/containers/Layout";
 import http from "@/services/httpService";
 import axios from "axios";
+import queryString from "query-string";
 
 export default function BlogPage({ blogData, categoryData }) {
   return (
@@ -28,12 +29,15 @@ export default function BlogPage({ blogData, categoryData }) {
   );
 }
 
-export async function getServerSideProps({ req }) {
-  const { data: result } = await http.get("/posts?page=1&limit=10", {
-    headers: {
-      Cookie: req.headers.cookie || "",
-    },
-  });
+export async function getServerSideProps({ req, query }) {
+  const { data: result } = await http.get(
+    `/posts?${queryString.stringify(query)}`,
+    {
+      headers: {
+        Cookie: req.headers.cookie || "",
+      },
+    }
+  );
   const { data: dataCategory } = await http.get("/post-category");
   const { data } = result;
   return {
