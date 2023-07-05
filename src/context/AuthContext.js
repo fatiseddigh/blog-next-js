@@ -1,8 +1,8 @@
-import axios from "axios";
 import { createContext, useContext, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useReducerAsync } from "use-reducer-async";
 import Router from "next/router";
+import http from "@/services/httpService";
 const AuthContext = createContext();
 const AuthContextDispatcher = createContext();
 const initialState = {
@@ -39,8 +39,8 @@ const asyncActionHandlers = {
     ({ dispatch }) =>
     (action) => {
       dispatch({ type: "SIGNIN_PENDING" });
-      axios
-        .post("http://localhost:5000/api/user/signin", action.payload, {
+      http
+        .post("/user/signin", action.payload, {
           withCredentials: true,
         })
         .then(({ data }) => {
@@ -60,8 +60,8 @@ const asyncActionHandlers = {
     ({ dispatch }) =>
     (action) => {
       dispatch({ type: "SIGNIN_PENDING" });
-      axios
-        .post("http://localhost:5000/api/user/signup", action.payload, {
+      http
+        .post("/user/signup", action.payload, {
           withCredentials: true,
         })
         .then(({ data }) => {
@@ -81,8 +81,8 @@ const asyncActionHandlers = {
     ({ dispatch }) =>
     (action) => {
       dispatch({ type: "SIGNIN_PENDING" });
-      axios
-        .get("http://localhost:5000/api/user/load", {
+      http
+        .get("/user/load", {
           withCredentials: true,
         })
         .then(({ data }) => {
@@ -99,8 +99,8 @@ const asyncActionHandlers = {
   SIGNOUT:
     ({ dispatch }) =>
     (action) => {
-      axios
-        .get("http://localhost:5000/api/user/logout", {
+      http
+        .get("/user/logout", {
           withCredentials: true,
         })
         .then(({ data }) => {
