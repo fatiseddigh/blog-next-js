@@ -27,9 +27,15 @@ export default function BlogPage({ blogData, categoryData }) {
   );
 }
 
-export async function getServerSideProps(ctx) {
+export async function getServerSideProps({ req }) {
   const { data: result } = await axios.get(
-    "http://localhost:5000/api/posts?page=1&limit=10"
+    "http://localhost:5000/api/posts?page=1&limit=10",
+    {
+      withCredentials: true,
+      headers: {
+        Cookie: req.headers.cookie || "",
+      },
+    }
   );
   const { data: dataCategory } = await axios.get(
     "http://localhost:5000/api/post-category"

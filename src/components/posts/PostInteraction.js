@@ -12,7 +12,6 @@ import {
 const PostInteraction = ({ post, isSmall, className }) => {
   const iconSize = isSmall ? "h-4 w-4" : "h-6 w-6";
   const numberSize = isSmall ? "text-xs" : "text-base";
-
   return (
     <div
       className={`flex items-center ${

@@ -30,9 +30,15 @@ export default function CategoryPage({ blogData, categoryData }) {
 }
 
 export async function getServerSideProps(ctx) {
-  const { query } = ctx;
+  const { query, req } = ctx;
   const { data: result } = await axios.get(
-    `http://localhost:5000/api/posts?${queryString.stringify(query)}`
+    `http://localhost:5000/api/posts?${queryString.stringify(query)}`,
+    {
+      withCredentials: true,
+      headers: {
+        Cookie: req.headers.cookie || "",
+      },
+    }
   );
   const { data: dataCategory } = await axios.get(
     "http://localhost:5000/api/post-category"
