@@ -6,9 +6,8 @@ import { useState } from "react";
 const DesktopCategory = ({ categoryData }) => {
   const [isOpen, setIsOpen] = useState(true);
   const { query } = useRouter();
-  console.log(query);
   return (
-    <div className="bg-white rounded-3xl mt-2 overflow-hidden">
+    <div className="bg-white rounded-3xl mt-2 overflow-hidden sticky top-24">
       {/*  accordion header */}
       <div
         onClick={() => setIsOpen(!isOpen)}
