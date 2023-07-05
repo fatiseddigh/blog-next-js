@@ -1,3 +1,5 @@
+import http from "@/services/httpService";
+import routerPush from "@/utils/routerPush";
 import {
   BookmarkIcon,
   HeartIcon,
@@ -8,8 +10,29 @@ import {
   BookmarkIcon as SolidBookmark,
   HeartIcon as SolidHearIcon,
 } from "@heroicons/react/24/solid";
+import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
 
 const PostInteraction = ({ post, isSmall, className }) => {
+  const router = useRouter();
+  const likeHandler = (id) => {
+    http
+      .put(`/posts/like/${id}`)
+      .then(({ data }) => {
+        routerPush(router);
+        toast.success(data.message);
+      })
+      .catch((err) => toast.error("error"));
+  };
+  const bookmarkHandler = (id) => {
+    http
+      .put(`/posts/bookmark/${id}`)
+      .then(({ data }) => {
+        routerPush(router);
+        toast.success(data.message);
+      })
+      .catch((err) => toast.error("error"));
+  };
   const iconSize = isSmall ? "h-4 w-4" : "h-6 w-6";
   const numberSize = isSmall ? "text-xs" : "text-base";
   return (
@@ -30,6 +53,7 @@ const PostInteraction = ({ post, isSmall, className }) => {
         className="bg-red-100 p-0.5 rounded flex items-center gap-x-1 text-red-500
       hover:bg-red-500 hover:text-red-100 transition-all  
       "
+        onClick={() => likeHandler(post._id)}
       >
         {post.isLiked ? (
           <SolidHearIcon className={`${iconSize} fill-current`} />
@@ -43,6 +67,7 @@ const PostInteraction = ({ post, isSmall, className }) => {
       <button
         className="bg-blue-100 text-blue-500 p-0.5 rounded flex items-center gap-x-1
       hover:bg-blue-500 hover:text-white transition-all"
+        onClick={() => bookmarkHandler(post._id)}
       >
         {post.isBookmarked ? (
           <SolidBookmark className={`${iconSize} fill-current`} />

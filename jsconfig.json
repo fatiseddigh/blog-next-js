@@ -5,7 +5,8 @@
       "@/components/*": ["src/components/*"],
       "@/containers/*": ["src/containers/*"],
       "@/context/*": ["src/context/*"],
-      "@/services/*": ["src/services/*"]
+      "@/services/*": ["src/services/*"],
+      "@/utils/*": ["src/utils/*"]
     }
   }
 }
