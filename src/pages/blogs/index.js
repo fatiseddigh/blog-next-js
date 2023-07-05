@@ -1,10 +1,10 @@
+import CustomPagination from "@/common/Pagination";
 import DesktopCategory from "@/components/posts/DesktopCategory";
 import MobileCategory from "@/components/posts/MobileCategory";
 import PostList from "@/components/posts/PostList";
 import SortBar from "@/components/posts/SortBar";
 import Layout from "@/containers/Layout";
 import http from "@/services/httpService";
-import axios from "axios";
 import queryString from "query-string";
 
 export default function BlogPage({ blogData, categoryData }) {
@@ -23,6 +23,10 @@ export default function BlogPage({ blogData, categoryData }) {
           <div className=" md:col-span-9 grid grid-cols-6 gap-8 ">
             <PostList blogData={blogData.docs} />
           </div>
+          <CustomPagination
+            totalPages={blogData.totalPages}
+            page={blogData.page}
+          />
         </div>
       </div>
     </Layout>
@@ -31,7 +35,7 @@ export default function BlogPage({ blogData, categoryData }) {
 
 export async function getServerSideProps({ req, query }) {
   const { data: result } = await http.get(
-    `/posts?${queryString.stringify(query)}`,
+    `/posts?${queryString.stringify(query)}&limit=6`,
     {
       headers: {
         Cookie: req.headers.cookie || "",

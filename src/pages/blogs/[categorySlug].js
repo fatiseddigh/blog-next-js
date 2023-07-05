@@ -1,3 +1,4 @@
+import CustomPagination from "@/common/Pagination";
 import DesktopCategory from "@/components/posts/DesktopCategory";
 import MobileCategory from "@/components/posts/MobileCategory";
 import PostList from "@/components/posts/PostList";
@@ -24,6 +25,10 @@ export default function CategoryPage({ blogData, categoryData }) {
           <div className=" md:col-span-9 grid grid-cols-6 gap-8 ">
             <PostList blogData={blogData.docs} />
           </div>
+          <CustomPagination
+            totalPages={blogData.totalPages}
+            page={blogData.page}
+          />
         </div>
       </div>
     </Layout>

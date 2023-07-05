@@ -5,7 +5,7 @@ const Header = () => {
   const { user, loading } = useAuth();
   const dispatch = useAuthActions();
   return (
-    <header className="bg-white shadow-md py-2 mb-5 px-5 md:px-0 sticky">
+    <header className="bg-white shadow-md py-2 mb-5 px-5 md:px-0 sticky top-0 z-10">
       <div
         className={`container mx-auto xl:max-w-screen-xl transition-all ${
           loading ? "opacity-0" : "opacity-100"

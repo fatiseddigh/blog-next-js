@@ -13,7 +13,7 @@ const DesktopCategory = ({ categoryData }) => {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between bg-purple-200  py-5 px-2 cursor-pointer"
       >
-        <span> article sorting </span>
+        <span> article category </span>
         <ChevronDownIcon
           className={`w-6 h-6 stroke-purple-400 transition-all duration-200  ${
             isOpen ? "rotate-180" : "rotate-0"
