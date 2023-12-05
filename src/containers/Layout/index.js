@@ -3,7 +3,7 @@ import Header from "./Header";
 
 const Layout = ({ children }) => {
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className=" min-h-screen">
       <Header />
       {children}
       <Footer />

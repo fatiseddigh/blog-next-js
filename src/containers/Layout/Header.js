@@ -5,21 +5,27 @@ const Header = () => {
   const { user, loading } = useAuth();
   const dispatch = useAuthActions();
   return (
-    <header className="bg-white shadow-md py-2 mb-5 px-5 md:px-0 sticky top-0 z-10">
+    <header className="md:px-0 w-full bg-gradient-to-r from-purple-50 to-purple-200  sticky top-0 z-30">
       <div
-        className={`container mx-auto xl:max-w-screen-xl transition-all ${
+        className={` mt-0 py-4 mx-auto xl:max-w-screen-xl transition-all ${
           loading ? "opacity-0" : "opacity-100"
         }`}
       >
         <nav className="flex justify-between">
           <ul className="flex items-center gap-x-4">
             <li>
-              <Link href="/" className="py-2 block">
+              <Link
+                href="/"
+                className=" block text-lg  hover:text-slate-600 text-slate-900"
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/blogs" className="py-2 block">
+              <Link
+                href="/blogs"
+                className=" block text-lg  hover:text-slate-600 text-slate-900"
+              >
                 Blogs
               </Link>
             </li>
@@ -28,21 +34,27 @@ const Header = () => {
             {user ? (
               <>
                 <button
-                  className="bg-red-500 rounded text-red-100 px-2 py-2"
+                  className="bg-red-500 rounded text-red-100 px-2 "
                   onClick={() => dispatch({ type: "SIGNOUT" })}
                 >
                   logout
                 </button>
-                <Link href="/profile" className="py-2 block">
+                <Link href="/profile" className=" block">
                   Profile - <span className="text-sm">{user.name}</span>
                 </Link>
               </>
             ) : (
               <>
-                <Link href="/signin" className="py-2 block">
+                <Link
+                  href="/signin"
+                  className=" block text-lg  hover:text-slate-600 text-slate-900"
+                >
                   Sign in
                 </Link>{" "}
-                <Link href="/signup" className="py-2 block">
+                <Link
+                  href="/signup"
+                  className=" block text-lg  hover:text-slate-600 text-slate-900"
+                >
                   Signup
                 </Link>
               </>
@@ -50,6 +62,7 @@ const Header = () => {
           </div>
         </nav>
       </div>
+      <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
     </header>
   );
 };

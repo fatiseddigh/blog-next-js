@@ -41,7 +41,7 @@ const PostInteraction = ({ post, isSmall, className }) => {
         isSmall ? "gap-x-2" : "gap-x-4"
       } ${className}`}
     >
-      <button className="bg-gray-200 p-0.5 rounded flex items-center gap-x-1">
+      <button className="bg-purple-200 p-0.5 rounded flex items-center gap-x-1">
         <ChatBubbleBottomCenterTextIcon
           className={`${iconSize} stroke-gray-500`}
         />

@@ -33,7 +33,7 @@ const CommentForm = ({ postId, responseTo, setOnReply }) => {
         placeholder=" send your comment"
       />
       <button
-        className="mt-4 mx-auto py-3 w-full sm:w-56 bg-violet-700 rounded-2xl text-white px-3 md:text-lg"
+        className="mt-4 mx-auto py-3 w-full sm:w-56 bg-purple-700 rounded-2xl text-white px-3 md:text-lg"
         onClick={submitHandler}
       >
         send comment

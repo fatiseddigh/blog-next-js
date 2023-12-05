@@ -23,7 +23,7 @@ const PostPAge = ({ postData }) => {
   };
   return (
     <Layout>
-      <div className="md:max-w-screen-lg container mx-auto">
+      <div className="md:max-w-screen-lg container mx-auto py-4">
         <header className="flex flex-col md:flex-row gap-y-5 md:justify-between md:items-start mb-12 mx-auto max-w-screen-md">
           {/* author data */}
           <div className="flex items-stretch">
@@ -148,7 +148,7 @@ const PostPAge = ({ postData }) => {
                 return (
                   <li
                     key={index}
-                    className="px-3 py-1 rounded-2xl bg-gray-200 hover:bg-gray-100 transition-all  cursor-pointer text-gray-600 tex-sm mb-3 block"
+                    className="px-3 py-1 rounded-2xl bg-purple-100 hover:bg-purple-200 transition-all  cursor-pointer text-purple-900 tex-sm mb-3 block"
                   >
                     {tag}
                   </li>
@@ -172,7 +172,7 @@ const PostPAge = ({ postData }) => {
                 >
                   <IoLogoLinkedin
                     size={30}
-                    className="fill-gray-400 hover:fill-gray-500 transition-all duration-300 cursor-pointer"
+                    className="fill-purple-200 hover:fill-purple-300 transition-all duration-300 cursor-pointer"
                   />
                 </a>
                 <a
@@ -183,7 +183,7 @@ const PostPAge = ({ postData }) => {
                 >
                   <IoLogoTwitter
                     size={24}
-                    className="fill-gray-400  hover:fill-gray-500 transition-all duration-300 cursor-pointer"
+                    className="fill-purple-200 hover:fill-purple-300 transition-all duration-300 cursor-pointer"
                   />
                 </a>
                 <a
@@ -193,7 +193,7 @@ const PostPAge = ({ postData }) => {
                   href={`https://telegram.me/share/url?url=${process.env.NEXT_PUBLIC_DOMAIM_URL}/posts/${postData.hashId}/${postData.slug}&text=${postData.title}`}
                 >
                   <FaTelegram
-                    className="fill-gray-400 hover:fill-gray-500 transition-all duration-300 cursor-pointer"
+                    className="fill-purple-200 hover:fill-purple-300 transition-all duration-300 cursor-pointer"
                     size={24}
                   />
                 </a>
@@ -203,7 +203,7 @@ const PostPAge = ({ postData }) => {
                   text={`${process.env.NEXT_PUBLIC_DOMAIM_URL}/posts/${postData.hashId}/${postData.slug}`}
                   onCopy={copyHandler}
                 >
-                  <div className="bg-gray-100 border px-3 py-1 rounded-2xl text-gray-600 flex items-center gap-x-2 cursor-pointer ">
+                  <div className="bg-purple-100 border px-3 py-1 rounded-2xl text-purple-900 flex items-center gap-x-2 cursor-pointer ">
                     <span className="text-sm md:text-base">copy&nbsp;link</span>
                     <MdContentCopy size={24} />
                   </div>
@@ -236,7 +236,7 @@ const PostPAge = ({ postData }) => {
         {/* post comments */}
         <PostComments post={postData} />
       </div>
-      <div className="h-32 bg-gray-50"></div>
+      <div className="h-32 bg-white"></div>
     </Layout>
   );
 };
